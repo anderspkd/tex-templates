@@ -1,0 +1,70 @@
+\documentclass[
+draft=false,
+fontsize=10pt,
+titlepage=false,
+abstract=true, % Includes 'abstract' title
+parskip=half, % Space between paragraphs. full/half (-/+/* for space in the last lines)
+footnotes=multiple, % Consecutive footnotes are separated in a clear manner
+%
+%% Layout
+DIV=10, % The larger the factor , the larger the text block and the smaller the margins
+twoside=false,
+twocolumn=false,
+headinclude=false,
+footinclude=false, % Cause the header or footer to be counted as part of the text
+% headlines=5,
+% headheight=1cm, % Number of lines OR height for head (also works for foot)
+headsepline=fale,
+footsepline=false, % Add separation lines
+%
+]{scrartcl} % scrartcl/scrreprt
+
+\title{My template} 
+\author{Daniel Escudero} 
+\date{}
+
+%% Language and font encodings
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+
+%% Math
+\usepackage{amsmath,amssymb,amsthm}
+
+%% Page style (KOMA-Script)
+\pagestyle{plain} % empty/headings/plain, takes effect with the next page that is output
+
+%% Sets page size and margins to specific values. Only if strictly needed
+% \usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Fonts
+\usepackage{microtype} % Better typesetting
+\usepackage{charter} % Font
+
+%% Only for testing
+\usepackage{blindtext}
+
+%% Useful packages
+\usepackage{bm} % Bold math symbols (including e.g. Greek letters)
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{booktabs} % Nice tables
+\usepackage{enumitem} % Better lists
+\usepackage{hyperref} % Hyperlinks
+
+\begin{document} 
+\maketitle 
+
+\begin{abstract}
+  My abstract
+\end{abstract}
+
+% Dummy text
+\Blinddocument
+
+\end{document} 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

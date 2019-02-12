@@ -63,6 +63,7 @@ footsepline=false, % Add separation lines
 \newcommand{\daniel}[2][]{\todo[#1]{\textsf{Daniel:} #2}}
 
 \input{macros}
+\input{tcb.tex}
 
 \begin{document} 
 \maketitle 
@@ -71,6 +72,10 @@ footsepline=false, % Add separation lines
   My abstract
 \end{abstract}
 
+\begin{mybox}{mybox}
+  \blindtext
+\end{mybox}
+\xmybox{xmybox}
 % Dummy text
 \Blinddocument
 

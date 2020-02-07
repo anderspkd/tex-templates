@@ -21,9 +21,9 @@ headings=standardclasses, % Headings look as usual
 headings=big
 ]{scrartcl} % scrartcl/scrreprt
 
-\title{My template} 
-\author{Daniel Escudero} 
-\date{}
+\title{}
+\author{}
+\date{\today}
 
 %% Language and font encodings
 \usepackage[utf8]{inputenc}
@@ -62,26 +62,19 @@ headings=big
 
 %% Margin notes
 \usepackage{todonotes}
-\newcommand{\daniel}[2][]{\todo[color=blue!50,#1]{\textsf{Daniel:} #2}}
+\newcommand{\todo}[2][]{\todo[color=blue!50,#1]{#2}}
 
 \input{macros}
 \input{tcb.tex}
 
-\begin{document} 
-\maketitle 
+\begin{document}
+\maketitle
 
 \begin{abstract}
-  My abstract
+
 \end{abstract}
 
-\begin{mybox}{mybox}
-  \blindtext
-\end{mybox}
-\xmybox{xmybox}
-% Dummy text
-\Blinddocument
-
-\end{document} 
+\end{document}
 
 %%% Local Variables:
 %%% mode: latex

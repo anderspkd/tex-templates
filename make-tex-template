@@ -1,0 +1,80 @@
+#!/bin/bash
+
+## Template directory location
+TMPL_DIR="${HOME}/code/tex/tex-templates"
+
+## Default values
+TITLE="Some Title"
+AUTHOR="Anders Dalskov"
+PROJECT_DIRECTORY="latex"
+
+## other variables
+SCRIPT_NAME=$0
+
+usage () {
+    echo -e "\
+usage: ${SCRIPT_NAME} [options ...] [project directory]
+
+ Generates a fresh tex project in [project directory], or the current directory if
+ none is supplied, using files stored in ${TMPL_DIR}
+
+   -t, --title TITLE    document title. Defaults to \"${TITLE}\"
+   -a, --author AUTHOR  document author. Defaults to \"${AUTHOR}\"
+   -h, --help           print this message
+
+By Anders Dalskov. No warrenty and so on ..."
+}
+
+err () {
+    >&2 echo $1
+    usage
+    exit 1
+}
+
+if ! [ -d $TMPL_DIR ]; then
+    err "no such directory: ${TMPL_DIR}"
+fi
+
+while [[ $# -gt 0 ]]; do
+    k="$1"
+
+    case $k in
+	-t|--title)
+	    TITLE=$2
+	    shift
+	    shift
+	    ;;
+	-a|--author)
+	    AUTHOR=$2
+	    shift
+	    shift
+	    ;;
+	-h|--help)
+	    usage
+	    exit 0
+	    ;;
+	*)
+	    if ! [ "${1}" = "." ]; then
+		PROJECT_DIRECTORY=$1
+	    fi
+	    shift
+	    ;;
+    esac
+done
+
+if [ -d "${PROJECT_DIR}" ]; then
+    err "directory ${PROJECT_DIR} already exists"
+    exit 1
+fi
+
+echo "creating directry ..."
+mkdir -p "${PROJECT_DIRECTORY}"
+
+echo "copying files ..."
+cp -r "${TMPL_DIR}/main.tex" "${PROJECT_DIRECTORY}"
+cp -r "${TMPL_DIR}/macros.tex" "${PROJECT_DIRECTORY}"
+cp -r "${TMPL_DIR}/tcb.tex" "${PROJECT_DIRECTORY}"
+
+echo "setting default values ..."
+sed -i "s/\\\\title{}/\\\\title{${TITLE}}/g" "${PROJECT_DIRECTORY}/main.tex"
+sed -i "s/\\\\author{}/\\\\author{${AUTHOR}}/g" "${PROJECT_DIRECTORY}/main.tex"

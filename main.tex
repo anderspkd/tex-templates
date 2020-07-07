@@ -1,25 +1,4 @@
-\documentclass[
-draft=false,
-fontsize=10pt,
-titlepage=false,
-abstract=true, % Includes 'abstract' title
-parskip=half, % Space between paragraphs. full/half (-/+/* for space in the last lines)
-footnotes=multiple, % Consecutive footnotes are separated in a clear manner
-%
-%% Layout
-DIV=10, % The larger the factor , the larger the text block and the smaller the margins
-twoside=false,
-twocolumn=false,
-headinclude=false,
-footinclude=false, % Cause the header or footer to be counted as part of the text
-% headlines=5,
-% headheight=1cm, % Number of lines OR height for head (also works for foot)
-headsepline=fale,
-footsepline=false, % Add separation lines
-%
-headings=standardclasses, % Headings look as usual
-headings=big
-]{scrartcl} % scrartcl/scrreprt
+\documentclass{article}
 
 \title{}
 \author{}
@@ -33,17 +12,7 @@ headings=big
 %% Math
 \usepackage{amsmath,amssymb,amsthm}
 
-%% Page style (KOMA-Script)
-\pagestyle{plain} % empty/headings/plain, takes effect with the next page that is output
-
-%% Sets page size and margins to specific values. Only if strictly needed
-% \usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
-
-%% Fonts
-\usepackage{microtype} % Better typesetting
-\usepackage{charter} % Font
-
-%% Only for testing
+%% Only for testing. \blindtext to use
 \usepackage{blindtext}
 
 %% Useful packages
@@ -54,25 +23,18 @@ headings=big
 \usepackage{enumitem} % Better lists
 \usepackage{hyperref} % Hyperlinks
 \usepackage{xcolor} % Colors like black!50
-
-%% If-then
-\usepackage{ifthen}
-\newboolean{mybool}
-\setboolean{mybool}{true} % \ifthenelse{\boolean{mybool}}{...IF}{...ELSE}
-
-%% Margin notes
-\usepackage{todonotes}
-\newcommand{\todo}[2][]{\todo[color=blue!50,#1]{#2}}
+\usepackage{framed} % Put boxes around stuff
 
 \input{macros}
-\input{tcb.tex}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-
+  % \input{sections/abstract}
 \end{abstract}
+
+% \input{sections/stuff}
 
 \end{document}
 

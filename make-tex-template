@@ -5,7 +5,7 @@ TMPL_DIR="${HOME}/code/tex/tex-templates"
 
 ## Default values
 TITLE="Some Title"
-AUTHOR="Anders Dalskov"
+AUTHOR="Some Author"
 PROJECT_DIRECTORY="latex"
 
 ## other variables
@@ -15,8 +15,10 @@ usage () {
     echo -e "\
 usage: ${SCRIPT_NAME} [options ...] [project directory]
 
- Generates a fresh tex project in [project directory], or the current directory if
- none is supplied, using files stored in ${TMPL_DIR}
+ Generates a fresh tex project in [project directory], or directory name 
+ \"${PROJECT_DIRECTORY}\" in the current directory if none is supplied.
+
+ Template files are stored at \"${TMPL_DIR}\".
 
    -t, --title TITLE    document title. Defaults to \"${TITLE}\"
    -a, --author AUTHOR  document author. Defaults to \"${AUTHOR}\"
@@ -54,9 +56,7 @@ while [[ $# -gt 0 ]]; do
 	    exit 0
 	    ;;
 	*)
-	    if ! [ "${1}" = "." ]; then
-		PROJECT_DIRECTORY=$1
-	    fi
+	    PROJECT_DIRECTORY=$1
 	    shift
 	    ;;
     esac
@@ -68,12 +68,11 @@ if [ -d "${PROJECT_DIR}" ]; then
 fi
 
 echo "creating directry ..."
-mkdir -p "${PROJECT_DIRECTORY}"
+mkdir -p "${PROJECT_DIRECTORY}/sections"
 
 echo "copying files ..."
 cp -r "${TMPL_DIR}/main.tex" "${PROJECT_DIRECTORY}"
 cp -r "${TMPL_DIR}/macros.tex" "${PROJECT_DIRECTORY}"
-cp -r "${TMPL_DIR}/tcb.tex" "${PROJECT_DIRECTORY}"
 
 echo "setting default values ..."
 sed -i "s/\\\\title{}/\\\\title{${TITLE}}/g" "${PROJECT_DIRECTORY}/main.tex"

@@ -6,7 +6,6 @@ BASE_TMPL_DIR="${HOME}/Templates/tex-templates"
 ## Default values
 TITLE="Some Title"
 AUTHOR="Some Author"
-PROJECT_DIRECTORY="latex"
 TEMPLATE_KIND="article"
 
 ## other variables
@@ -16,8 +15,7 @@ usage () {
     echo -e "\
 usage: ${SCRIPT_NAME} [options ...] [project directory]
 
- Generates a fresh tex project in [project directory], or directory name 
- \"${PROJECT_DIRECTORY}\" in the current directory if none is supplied.
+ Generates a fresh tex project in [project directory].
 
  Template files are stored at \"${TMPL_DIR}\".
 
@@ -63,13 +61,17 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
 	*)
-	    PROJECT_DIRECTORY=$1
+	    PROJECT_DIRECTORY=$(pwd)/$1
 	    shift
 	    ;;
     esac
 done
 
 TMPL_DIR="${BASE_TMPL_DIR}/${TEMPLATE_KIND}"
+
+if [ -z "${PROJECT_DIRECTORY}" ]; then
+    err "no destination dir provided"
+fi
 
 if ! [ -e "${TMPL_DIR}/.flag" ]; then
     err "unknwon template: ${TEMPLATE_KIND}"
@@ -83,7 +85,7 @@ echo "creating directry ..."
 mkdir -p "${PROJECT_DIRECTORY}/sections"
 
 echo "copying files ..."
-cp -r "${TMPL_DIR}/*.tex" "${PROJECT_DIRECTORY}"
+cp -r "${TMPL_DIR}/"*.tex "${PROJECT_DIRECTORY}"
 
 echo "setting default values ..."
 sed -i "s/\\\\title{}/\\\\title{${TITLE}}/g" "${PROJECT_DIRECTORY}/main.tex"
